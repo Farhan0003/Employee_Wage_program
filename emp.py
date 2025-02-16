@@ -12,38 +12,47 @@ def check_attendance():
         print(f"An error occurred while checking attendance: {e}")
         return 0
 
-def calculate_monthly_wage():
-    """Calculate and display the employee's monthly wage based on attendance."""
-    wage_per_hr = 20
-    total_wage = 0
-    total_working_days = 20
+def calculate_wages():
+    """Calculate and display the employee's wages based on working hours and days with conditions."""
+    WAGE_PER_HR = 20
+    TOTAL_WAGE = 0
+    TOTAL_WORKING_DAYS = 0
+    TOTAL_WORKING_HOURS = 0
+    MAX_WORKING_HOURS = 100
+    MAX_WORKING_DAYS = 20
 
-    print("Welcome to Employee Wages Computation Program for a Month")
+    print("Welcome to Employee Wages Computation Program with Condition")
 
     try:
-        for day in range(1, total_working_days + 1):
+        while TOTAL_WORKING_DAYS < MAX_WORKING_DAYS and TOTAL_WORKING_HOURS < MAX_WORKING_HOURS:
             emp_check = check_attendance()
 
             match emp_check:
                 case 1:
-                    daily_wage = wage_per_hr * 8
-                    print(f"Day {day}: Employee is present full day. Daily wage: {daily_wage}")
+                    daily_hours = 8
+                    print(f"Day {TOTAL_WORKING_DAYS + 1}: Employee is present full day. Worked hours: {daily_hours}")
                 case 2:
-                    daily_wage = wage_per_hr * 4
-                    print(f"Day {day}: Employee is present part time. Daily wage: {daily_wage}")
+                    daily_hours = 4
+                    print(f"Day {TOTAL_WORKING_DAYS + 1}: Employee is present part time. Worked hours: {daily_hours}")
                 case 0:
-                    daily_wage = 0
-                    print(f"Day {day}: Employee is absent. Daily wage: {daily_wage}")
+                    daily_hours = 0
+                    print(f"Day {TOTAL_WORKING_DAYS + 1}: Employee is absent. Worked hours: {daily_hours}")
 
-            total_wage += daily_wage
+            TOTAL_WORKING_HOURS += daily_hours
+            TOTAL_WORKING_DAYS += 1
+            daily_wage = daily_hours * WAGE_PER_HR
+            TOTAL_WAGE += daily_wage
 
-        print(f"\nTotal wage for the month: {total_wage}")
+        print("\n--- Monthly Wage Summary ---")
+        print(f"Total Working Days: {TOTAL_WORKING_DAYS}")
+        print(f"Total Working Hours: {TOTAL_WORKING_HOURS}")
+        print(f"Total Wage: {TOTAL_WAGE}")
     except Exception as e:
-        print(f"An error occurred while calculating monthly wage: {e}")
+        print(f"An error occurred while calculating wages: {e}")
 
 def main():
-    """Main function to execute the monthly wage computation."""
-    calculate_monthly_wage()
+    """Main function to execute the wage computation."""
+    calculate_wages()
 
 if __name__ == "__main__":
     main()
