@@ -1,30 +1,42 @@
 import random
 
 def check_attendance():
-    """Check and display employee attendance status.
+    """Check and return employee attendance status.
 
-    This function randomly determines whether an employee is present or absent
-    and prints the corresponding status.
+    Returns:
+        int: 1 if the employee is present, 0 if absent.
     """
     print("Welcome to Employee Wages Computation Program on Master Branch")
 
     try:
-        attendance = random.choice([1, 0])
-
-        if attendance == 1:
-            print("The employee is present")
-        else:
-            print("The employee is absent")
+        return random.choice([1, 0])
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred while checking attendance: {e}")
+        return 0
+
+def emp_daily_wage():
+    """Calculate and display the employee's daily wage based on attendance."""
+    wage_per_hr = 20
+
+    try:
+        emp_check = check_attendance()
+
+        if emp_check == 1:
+            daily_wage = wage_per_hr * 8
+            print(f"The employee is present full day, so the daily wage is: {daily_wage}")
+        else:
+            daily_wage = 0
+            print(f"The employee is absent for the day, so the daily wage is: {daily_wage}")
+    except Exception as e:
+        print(f"An error occurred while calculating daily wage: {e}")
 
 def main():
-    """Execute the employee attendance check and display a welcome message."""
-    try:
-        check_attendance()
-        print("Welcome to the Employee Wage Computation")
-    except Exception as e:
-        print(f"An error occurred in the main function: {e}")
+    """Main function to execute the employee wage computation."""
+    emp_daily_wage()
 
 if __name__ == "__main__":
     main()
+
+
+
+
