@@ -7,7 +7,7 @@ def check_attendance():
     and prints the corresponding status.
     """
     print("Welcome to Employee Wages Computation Program on Master Branch")
-
+    
     attendance = random.choice([1, 0])
 
     if attendance == 1:
